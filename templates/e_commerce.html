@@ -1,0 +1,78 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+<main>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Ecommerce Section </h1>
+                <p class="lead text-muted">Here is the list of all sites of Ecommerce from where you can buy your items</p>
+            
+<div>
+    <form class="form-inline my-2 my-lg-0" method="post" action="/e_commerce">
+        <input class="form-control mr-sm-2 my-2 py-2" type="search" placeholder="Search" aria-label="Search" name='med'>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+</div>
+
+
+<hr>
+<hr>
+<div class="Container">
+    <h1>Detail's of the {{ itemname }} for searching from different-different site</h1>
+    <br>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      {% for category,message in messages %}
+        <div class="alert alert-{{category}}" role="alert">
+    {{message}}
+     </div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <br><br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sno</th>
+          <th scope="col"> Name</th>
+          <th scope="col"> Click here</th>
+          
+        
+        </tr>
+      </thead>
+      <tbody>
+        {% for site in allsite %}
+        
+        <tr>
+          <th scope="row">{{site.id}}</th>
+       
+          <td>{{site.name}}</td>
+          <td><a href="/e_commerce/{{site.name}}"><button
+            class="btn btn-primary">Go To</button></a></td>
+          
+        </tr>
+         {% endfor %}
+      </tbody>
+    </table>
+    <div class="container">
+                       
+        <button class="btn btn-outline-primary float-left " role="button" onclick="window.location.href='{{prev}}'" {{prvstatus}}> &larr;Previous</button>
+        <button class="btn btn-outline-primary" onclick="window.location.href='{{next}}'"  {{nxtstatus}}>Next &rarr;</button>
+     
+
+
+              </div>
+              </div>
+
+</div>
+                  
+            </div>
+        </div>
+    </section>
+
+    
+</main>
+
+{% endblock %}

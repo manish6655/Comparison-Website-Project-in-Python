@@ -1,0 +1,19 @@
+
+{% extends "layout.html" %}
+{% block body %}
+<div class="container">
+   
+        <form class="my-4" action="/import_generic/{{name}}" method="post" enctype="multipart/form-data">
+            <hr>
+            <b>Select Excel file for similar like {{name}} Medicines to upload:</b>
+            <input type="file" class="custom-file-input" name="fileu">
+            <input type="submit" value="Upload File" name="submit">
+            <hr>
+          </form>
+        </div>
+
+     
+       
+
+    {% endblock %}
+

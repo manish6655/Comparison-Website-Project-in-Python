@@ -1,0 +1,82 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+<main>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Medicine Section </h1>
+                <p class="lead text-muted">Here is the list of all common medicines who have the same componants to used to treat or reduce the symptoms of type.</p>
+            
+<div>
+    <form class="form-inline my-2 my-lg-0" method="post">
+        <input class="form-control mr-sm-2 my-2 py-2" type="search" placeholder="Search" aria-label="Search" name='med'>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+</div>
+
+
+<hr>
+<hr>
+<div class="Container">
+    <h1>Detail's of the {{ medicine_name1 }} Medicine having same componants</h1>
+    <br>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      {% for category,message in messages %}
+        <div class="alert alert-{{category}}" role="alert">
+    {{message}}
+     </div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <br>
+    <hr>
+    
+    <button class="btn btn-outline-primary" onclick="window.location.href='/export_generic/{{medicine_name1}}'"  {{exportStatus}}>Export Data </button>
+    <hr>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sno</th>
+          <th scope="col">Medicine Name</th>
+          <th scope="col">Component Name</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set i = namespace(value=1) %}
+        {% for medicine in generic_medicines %}
+        
+        <tr>
+          <th scope="row">{{i.value}}</th>
+          <td>{{medicine.Name[medicine_name1|length+1:]}}</td>
+          <td>{{medicine.Component}}</td>
+          <td>{{medicine.Company}}</td>
+          <td>{{medicine.Date}}</td>
+        </tr>
+        {% set i.value = i.value + 1 %}
+         {% endfor %}
+      </tbody>
+    </table>
+    <div class="container">
+                       
+                <button class="btn btn-outline-primary float-left " role="button" onclick="window.location.href='{{prev}}'" {{prvstatus}}> &larr;Previous</button>
+                <button class="btn btn-outline-primary" onclick="window.location.href='{{next}}'"  {{nxtstatus}}>Next &rarr;</button>
+             
+            </div>
+              </div>
+
+</div>
+                  
+            </div>
+        </div>
+    </section>
+
+   
+</main>
+
+{% endblock %}

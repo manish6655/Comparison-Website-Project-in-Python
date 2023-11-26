@@ -1,0 +1,12 @@
+{
+    "params":
+    {
+      "local_server":"True",
+      "local_uri": "mysql://root:@localhost/medicine1",
+      "prod_uri":"mysql://root:@localhost/medicine1",
+      "secret_key": "pankaj_dgdgd",
+      "no_of_items": 5
+ 
+    }
+  
+  }
